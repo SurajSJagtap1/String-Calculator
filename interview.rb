@@ -5,8 +5,11 @@
 # 1) It should be able to handle comma separated numbers containing multiple digits in a single number.
 
 
-def figure_out_whole_number(index, str, delimiters)
-    found_delimiter = false
+def calculate_whole_number
+end
+
+def figure_out_all_digits_of_same_number(index, str, delimiters) # If there are multiple digits in the same number,
+    found_delimiter = false                                      # This funtion extracts all these digits
     digits_of_the_same_number = []
 
     while found_delimiter != true
@@ -30,7 +33,7 @@ def add_numbers_from_string(str)
     for i in 0..last_index do
         unless delimiters.include?(str[i])
             if numbers.push(str[i].to_i).is_a? Numeric
-                whole_number = figure_out_whole_number(i, str, delimiters)
+                whole_number = figure_out_all_digits_of_same_number(i, str, delimiters)
             end
         end
     end

@@ -50,7 +50,8 @@ class StringCalculator
         numbers = []
         delimiters = [',']
         reached_end_of_string = false
-        current_index, reached_till_index = 0
+        current_index = 0
+        reached_till_index = 0
 
         while (reached_end_of_string == false) do
             unless delimiters.include?(string_with_numbers[current_index])

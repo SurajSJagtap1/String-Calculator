@@ -13,4 +13,9 @@ RSpec.describe StringCalculator do
         expect(sum).to eq(5)
     end
 
+    it 'should return sum of numbers having multiple digits within a number in comma separated string' do
+        string_with_numbers = StringCalculator.new('143, 24, 1, 34') # Sum is 202
+        sum = string_with_numbers.add()
+        expect(sum).to eq(202)
+    end
 end

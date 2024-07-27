@@ -36,4 +36,10 @@ RSpec.describe StringCalculator do
         sum = string_with_numbers.add()
         expect(sum).to eq(202)
     end
+
+    it 'should return appropriate sum if we pass new line characters (\n) instead of commas in the string' do
+        string_with_numbers = StringCalculator.new('13\n24\n1,21') # Sum is 58
+        sum = string_with_numbers.add()
+        expect(sum).to eq(58)
+    end
 end

@@ -28,16 +28,16 @@ class StringCalculator
         formed_number
     end
 
-    def figure_out_all_digits_of_same_number(index, str) # If there are multiple digits in the same number,
+    def figure_out_all_digits_of_same_number(index) # If there are multiple digits in the same number,
         found_delimiter = false                                      # This funtion extracts all these digits
         digits_of_the_same_number = []
     
-        while (found_delimiter == false && index < str.length)
-            if DELIMITERS.include?(str[index])
+        while (found_delimiter == false && index < string_with_numbers.length)
+            if DELIMITERS.include?(string_with_numbers[index])
                 found_delimiter = true
                 break;
             end
-            digits_of_the_same_number.push(str[index].to_i) unless DELIMITERS.include?(str[index])
+            digits_of_the_same_number.push(string_with_numbers[index].to_i) unless DELIMITERS.include?(string_with_numbers[index])
             index += 1
         end
 
@@ -64,7 +64,7 @@ class StringCalculator
         while (reached_end_of_string == false) do
             unless DELIMITERS.include?(string_with_numbers[current_index])
                 if (string_with_numbers[current_index].to_i).is_a? Numeric
-                    whole_number, reached_till_index = (figure_out_all_digits_of_same_number(current_index, string_with_numbers))
+                    whole_number, reached_till_index = (figure_out_all_digits_of_same_number(current_index))
                     numbers.push(whole_number)
                 end
             end

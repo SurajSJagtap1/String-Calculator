@@ -1,7 +1,7 @@
 require "pry"
 
 class StringCalculator
-    DELIMITERS = [',']
+    DELIMITERS = [',','n','\\']
 
     attr_accessor :string_with_numbers
 

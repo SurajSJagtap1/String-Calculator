@@ -48,4 +48,10 @@ RSpec.describe StringCalculator do
         sum = string_with_delimiters_only.add()
         expect(sum).to eq(0)
     end
+
+    it 'should support different delimieters: when specified at runtime in string itself' do
+        string_with_numbers = StringCalculator.new('//;\n1;2')
+        sum = string_with_numbers.add()
+        expect(sum).to eq(3)
+    end
 end

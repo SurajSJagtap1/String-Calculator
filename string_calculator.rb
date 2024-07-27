@@ -1,6 +1,8 @@
 require "pry"
 
 class StringCalculator
+    DELIMITERS = [',']
+
     attr_accessor :string_with_numbers
 
     def initialize(string_with_numbers)
@@ -26,16 +28,16 @@ class StringCalculator
         formed_number
     end
 
-    def figure_out_all_digits_of_same_number(index, str, delimiters) # If there are multiple digits in the same number,
+    def figure_out_all_digits_of_same_number(index, str) # If there are multiple digits in the same number,
         found_delimiter = false                                      # This funtion extracts all these digits
         digits_of_the_same_number = []
     
         while (found_delimiter == false && index < str.length)
-            if delimiters.include?(str[index])
+            if DELIMITERS.include?(str[index])
                 found_delimiter = true
                 break;
             end
-            digits_of_the_same_number.push(str[index].to_i) unless delimiters.include?(str[index])
+            digits_of_the_same_number.push(str[index].to_i) unless DELIMITERS.include?(str[index])
             index += 1
         end
 
@@ -48,15 +50,14 @@ class StringCalculator
     
         last_index = string_with_numbers.length - 1
         numbers = []
-        delimiters = [',']
         reached_end_of_string = false
         current_index = 0
         reached_till_index = 0
 
         while (reached_end_of_string == false) do
-            unless delimiters.include?(string_with_numbers[current_index])
+            unless DELIMITERS.include?(string_with_numbers[current_index])
                 if (string_with_numbers[current_index].to_i).is_a? Numeric
-                    whole_number, reached_till_index = (figure_out_all_digits_of_same_number(current_index, string_with_numbers, delimiters))
+                    whole_number, reached_till_index = (figure_out_all_digits_of_same_number(current_index, string_with_numbers))
                     numbers.push(whole_number)
                 end
             end

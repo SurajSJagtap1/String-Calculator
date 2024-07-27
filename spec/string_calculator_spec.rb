@@ -7,6 +7,12 @@ RSpec.describe StringCalculator do
         expect(sum).to eq(16)
     end
 
+    it 'should return 0 if there are no numbers in the string' do
+        string = StringCalculator.new(',,,, ,,,, ,,,') # Sum should be 0
+        sum = string.add()
+        expect(sum).to eq(0)
+    end
+
     it 'should return sum of numbers having multiple consecutive commas between them' do
         string_with_numbers = StringCalculator.new('1,,,4') # Sum is 5
         sum = string_with_numbers.add()

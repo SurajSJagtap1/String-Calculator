@@ -45,13 +45,20 @@ class StringCalculator
         [whole_number, index]
     end
 
+    def check_if_runtime_delimiters_are_passed?()
+        if string_with_numbers.start_with?('//')
+            DELIMITERS.push(string_with_numbers[2]) and return true unless string_with_numbers[2].is_a? Numeric
+        end
+        false
+    end
+
     def add()
         return 0 if string_with_numbers.empty?
     
         last_index = string_with_numbers.length - 1
         numbers = []
         reached_end_of_string = false
-        current_index = 0
+        current_index = check_if_runtime_delimiters_are_passed? ? 3 : 0
         reached_till_index = 0
 
         while (reached_end_of_string == false) do

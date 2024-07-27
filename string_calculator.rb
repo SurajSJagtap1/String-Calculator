@@ -1,7 +1,6 @@
 require "pry"
 
 # Specs 
-# 0) First version: basic addition of comma separated single digits from a string, should calculate sum of numbers only.
 # 1) It should be able to handle comma separated numbers containing multiple digits in a single number.
 
 class StringCalculator
@@ -65,10 +64,3 @@ class StringCalculator
         numbers.sum
     end
 end
-
-str = "4,2,3,4"
-
-obj = StringCalculator.new(str)
-puts obj.add()
-
-

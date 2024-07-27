@@ -42,4 +42,10 @@ RSpec.describe StringCalculator do
         sum = string_with_numbers.add()
         expect(sum).to eq(59)
     end
+
+    it 'should return 0 if only set of delimiters passed in a string' do
+        string_with_delimiters_only = StringCalculator.new('\n,,,\n,\n\n,')
+        sum = string_with_delimiters_only.add()
+        expect(sum).to eq(0)
+    end
 end

@@ -60,4 +60,10 @@ RSpec.describe StringCalculator do
         result = string_with_negative_number.add()
         expect(result).to eq("Negative numbers not allowed: [-6]")
     end
+
+    it 'should throw an exception if there are MULTIPLE negative numbers in string' do
+        string_with_negative_number = StringCalculator.new('4,5,-6,\n19,-10,3,-21')
+        result = string_with_negative_number.add()
+        expect(result).to eq("Negative numbers not allowed: [-6, -10, -21]")
+    end
 end

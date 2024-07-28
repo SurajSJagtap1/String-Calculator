@@ -54,4 +54,10 @@ RSpec.describe StringCalculator do
         sum = string_with_numbers.add()
         expect(sum).to eq(3)
     end
+
+    it 'should throw an exception if there is a negative number in string' do
+        string_with_negative_number = StringCalculator.new('3,5,-6,\n19')
+        result = string_with_negative_number.add()
+        expect(result).to eq("Negative numbers not allowed: [-6]")
+    end
 end

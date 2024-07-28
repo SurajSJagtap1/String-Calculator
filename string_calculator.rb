@@ -31,7 +31,9 @@ class StringCalculator
     def figure_out_all_digits_of_same_number(index) # If there are multiple digits in the same number,
         found_delimiter = false                                      # This funtion extracts all these digits
         digits_of_the_same_number = []
-    
+        this_is_a_negative_number = string_with_numbers[index] == '-'
+        index += 1 if this_is_a_negative_number
+
         while (found_delimiter == false && index < string_with_numbers.length)
             if DELIMITERS.include?(string_with_numbers[index])
                 found_delimiter = true
@@ -42,6 +44,7 @@ class StringCalculator
         end
 
         whole_number = calculate_whole_number( digits_of_the_same_number )
+        whole_number = whole_number * -1 if this_is_a_negative_number
         [whole_number, index]
     end
 
@@ -50,6 +53,23 @@ class StringCalculator
             DELIMITERS.push(string_with_numbers[2]) and return true unless string_with_numbers[2].is_a? Numeric
         end
         false
+    end
+
+    def filter_out_negatives_if_any(numbers)
+        numbers.select {|x| x < 0}
+    end
+
+    def return_result(numbers)
+        begin
+            negative_numbers = filter_out_negatives_if_any(numbers)
+            if negative_numbers.empty?
+                return numbers.sum
+            else
+                raise "Negative numbers not allowed: #{negative_numbers.to_s}"
+            end
+        rescue => e
+            return e.message
+        end
     end
 
     def add()
@@ -63,7 +83,7 @@ class StringCalculator
 
         while (reached_end_of_string == false) do
             unless DELIMITERS.include?(string_with_numbers[current_index])
-                if (string_with_numbers[current_index].to_i).is_a? Numeric
+                if ((string_with_numbers[current_index].to_i).is_a? Numeric || string_with_numbers[current_index] == '-')
                     whole_number, reached_till_index = (figure_out_all_digits_of_same_number(current_index))
                     numbers.push(whole_number)
                 end
@@ -73,6 +93,6 @@ class StringCalculator
             reached_end_of_string = true if current_index > last_index
         end
 
-        numbers.sum
+        return_result(numbers)
     end
 end
